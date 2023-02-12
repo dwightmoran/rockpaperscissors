@@ -8,35 +8,65 @@
 </head>
 <body>
     <script>
-        function playRound(playerChoice) {
-            let convertedChoice=playerChoice.toLowerCase();
-            const choiceNumber = Math.floor(Math.random() * 3);
-            const computerOptions = ['rock','paper','scissors'];
-            const computerChoice = computerOptions[choiceNumber];
+    let playerScore = 0;
+    let computerScore = 0;
+    function getComputerChoice(){
+        const choiceNumber = Math.floor(Math.random() * 3);
+        const computerOptions = ['rock','paper','scissors'];
+        const computerSelection = computerOptions[choiceNumber];
+        return computerSelection;
+    }
+    function playRound() {
+        const playerChoice = prompt("Rock, Paper, or Scissors?");
+            let convertedChoice = playerChoice.toLowerCase();
+            computerChoice = getComputerChoice();
+            console.log(computerChoice);
             if (convertedChoice==computerChoice){
-                return "Tie"
+                console.log ("Tie");
             }
             else if(convertedChoice == 'rock'){
                 if(computerChoice == 'paper'){
-                    return "Computer Won";
+                    console.log ("Computer Won");
+                    computerScore++;
                 }else{
-                    return "Player Won"
+                    console.log ("Player Won");
+                    playerScore++;
             }
         }
             else if(convertedChoice == 'scissors'){
                 if(computerChoice == 'rock'){
-                    return 'Computer Won';
+                    console.log ('Computer Won');
+                    computerScore++;
                 }else{
-                    return 'Player Won';
+                    console.log ('Player Won');
+                    playerScore++;
             }
         }
-        else if(convertedChoice == 'paper'){
-            if(computerChoice == 'scissors'){
-                return 'Computer Won';
+            else if(convertedChoice == 'paper'){
+                if(computerChoice == 'scissors'){
+                    console.log ('Computer Won');
+                    computerScore++;
             }else{
-                return 'Player Won';
+                console.log ('Player Won');
+                playerScore++;
             }
-        } }
+        } 
+    }
+    function game() {
+        for (let i = 0; i < 5; i++) {
+           playRound();
+        }
+        if(playerScore > computerScore){
+             console.log('You Won The Game')
+        }
+        else if(playerScore < computerScore){
+            console.log('You Lost The Game');
+        }
+        else{
+            console.log("Tie Game");
+        }
+    }
+    
     </script>
 </body>
 </html>
