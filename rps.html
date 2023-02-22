@@ -7,7 +7,28 @@
     <title>Document</title>
 </head>
 <body>
+
+    <div id="container">
+        <button id="rock">Rock</button>
+        <button id="paper">Paper</button>
+        <button id="scissors">Scissors</button>
+    </div>
+
+    <div id="results"></div>
+
     <script>
+   const container = document.querySelector('#results');
+const content = document.createElement('div');
+content.classList.add('content');
+
+
+    const buttons = document.querySelectorAll('button');
+    buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+            game(button.id);
+            });
+        });
+ 
     let playerScore = 0;
     let computerScore = 0;
     function getComputerChoice(){
@@ -16,57 +37,67 @@
         const computerSelection = computerOptions[choiceNumber];
         return computerSelection;
     }
-    function playRound() {
-        const playerChoice = prompt("Rock, Paper, or Scissors?");
-            let convertedChoice = playerChoice.toLowerCase();
+    function playRound(playerChoice) {
             computerChoice = getComputerChoice();
             console.log(computerChoice);
-            if (convertedChoice==computerChoice){
-                console.log ("Tie");
+            if (playerChoice==computerChoice){
+                content.textContent = "Tie! The computer's choice was: " + computerChoice + ". The player's score is " + playerScore + " and the computer's score is " + computerScore;
+                results.appendChild(content); 
             }
-            else if(convertedChoice == 'rock'){
+            else if(playerChoice == 'rock'){
                 if(computerChoice == 'paper'){
-                    console.log ("Computer Won");
                     computerScore++;
+                    content.textContent = "Computer Won! The computer's choice was: " + computerChoice + ". The player's score is " + playerScore + " and the computer's score is " + computerScore;
+                results.appendChild(content); 
                 }else{
-                    console.log ("Player Won");
                     playerScore++;
+                    content.textContent = "Player Won! The computer's choice was: " + computerChoice + ". The player's score is " + playerScore + " and the computer's score is " + computerScore;
+                results.appendChild(content); 
+                  
+                }
             }
-        }
-            else if(convertedChoice == 'scissors'){
+            else if(playerChoice == 'scissors'){
                 if(computerChoice == 'rock'){
-                    console.log ('Computer Won');
                     computerScore++;
+                    content.textContent = "Computer Won! The computer's choice was: " + computerChoice + ". The player's score is " + playerScore + " and the computer's score is " + computerScore;
+                results.appendChild(content); 
+                   
                 }else{
-                    console.log ('Player Won');
                     playerScore++;
+                    content.textContent = "Player Won! The computer's choice was: " + computerChoice + ". The player's score is " + playerScore + " and the computer's score is " + computerScore;
+                results.appendChild(content); 
+                   
+                }
             }
-        }
-            else if(convertedChoice == 'paper'){
+            else if(playerChoice == 'paper'){
                 if(computerChoice == 'scissors'){
-                    console.log ('Computer Won');
                     computerScore++;
-            }else{
-                console.log ('Player Won');
-                playerScore++;
+                    content.textContent = "Computer Won! The computer's choice was: " + computerChoice + ". The player's score is " + playerScore + " and the computer's score is " + computerScore;
+                results.appendChild(content); 
+                   
+                }else{
+                    playerScore++;
+                    content.textContent = "Player Won! The computer's choice was: " + computerChoice + ". The player's score is " + playerScore + " and the computer's score is " + computerScore;
+                results.appendChild(content); 
             }
+            } 
+
         } 
-    }
-    function game() {
-        for (let i = 0; i < 5; i++) {
-           playRound();
+    function game(selection) {
+           playRound(selection);
+        
+        if(playerScore > 4){
+             content.textContent = "Player won the game! The final score is Player: " + playerScore + " to Computer: " + computerScore;
+             results.appendChild(content);
         }
-        if(playerScore > computerScore){
-             console.log('You Won The Game')
+        if(computerScore > 4){
+            content.textContent = "Computer won the game! The final score is Player: " + playerScore + " to Computer: " + computerScore;
+             results.appendChild(content);
         }
-        else if(playerScore < computerScore){
-            console.log('You Lost The Game');
         }
-        else{
-            console.log("Tie Game");
-        }
-    }
     
+
     </script>
+      
 </body>
 </html>
